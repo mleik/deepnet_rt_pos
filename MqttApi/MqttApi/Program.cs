@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MqttApi.Models;
+using Newtonsoft.Json;
+using System;
 
 namespace MqttApi
 {
@@ -6,7 +8,13 @@ namespace MqttApi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Publisher.Publisher a = new Publisher.Publisher();
+            while (true)
+            {
+                string msg = Console.ReadLine();
+                UidMsg message = JsonConvert.DeserializeObject<UidMsg>(msg);
+                a.PublishAsync("test", message).GetAwaiter().GetResult();
+            }
         }
     }
 }
