@@ -6,11 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Broker\" />
-    <Folder Include="Subscriber\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MQTTnet" Version="3.0.16" />
     <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.0.16" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
