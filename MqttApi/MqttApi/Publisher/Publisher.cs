@@ -19,7 +19,6 @@ namespace MqttApi.Publisher
 
         public Publisher()
         {
-            InitLogger();
             _client = GetAndStartManagedMqttClient();
             _config = new Config.Config();
         }
@@ -52,14 +51,6 @@ namespace MqttApi.Publisher
             client.StartAsync(options).GetAwaiter().GetResult();
 
             return client;
-        }
-        private void InitLogger()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
-                .CreateLogger();
         }
     }
 }
