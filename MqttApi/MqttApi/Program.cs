@@ -9,13 +9,18 @@ namespace MqttApi
     {
         static void Main(string[] args)
         {
-            Publisher.Publisher a = new Publisher.Publisher();
+            Broker.Broker broker = new Broker.Broker();
+            Publisher.Publisher pub = new Publisher.Publisher();
+            Subscriber.Subscriber sub = new Subscriber.Subscriber();
+            pub.StartClient().GetAwaiter().GetResult();
+            sub.Subscribe("test").GetAwaiter().GetResult();
+            sub.StartClient().GetAwaiter().GetResult();
             while (true)
             {
                 LoggerService.InitLogger();
                 string msg = Console.ReadLine();
                 UidMsg message = JsonConvert.DeserializeObject<UidMsg>(msg);
-                a.PublishAsync("test", message).GetAwaiter().GetResult();
+                pub.Publish("test", message).GetAwaiter().GetResult();
             }
         }
     }
